@@ -3,6 +3,23 @@
 {% block title %}Hello SessionController!{% endblock %}
 
 {% block body %}
-<h1 class="text-center">this is my sessions page</h1>
+<h1 class="text-center">{{session.name}}</h1>
 
+<h2>program</h2> <br>
+{% for program in session.programs %}
+
+    {# TODO: #}
+    <a href="#">{{program.module.name}}{{program}} <br></a>
+
+{% endfor %}
+
+
+<br><h2>interns for this session</h2><br>
+
+{% for stagiaire in session.stagiaires %}
+
+    {# TODO: #}
+    <a href="#">{{stagiaire}} <br></a>
+
+{% endfor %}
 {% endblock %}
