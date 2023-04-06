@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProgramController!{% endblock %}
+
+{% block body %}
+<h1 class="text-center">Programs</h1>
+
+{% for module in modules %}
+    
+    {# TODO: link to onePage #}
+    <a href="#">{{ module.name }} </a>
+
+{% endfor %}
+
+{% endblock %}

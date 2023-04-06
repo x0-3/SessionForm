@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">home</h1>
+
+    {% for session in sessions %}
+    
+        <a href=" {{path('detail_session', {'id': session.id})}}">{{ session.name }} </a>
+
+    {% endfor %}
+{% endblock %}

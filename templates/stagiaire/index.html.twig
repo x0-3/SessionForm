@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StagiaireController!{% endblock %}
+
+{% block body %}
+<h1 class="text-center">List of interns</h1>
+
+{% for stagiaire in stagiaires %}
+    
+{# TODO: link to onePage #}
+<a href="#">{{ stagiaire.name }} {{stagiaire.lastName}} </a>
+
+{% endfor %}
+{% endblock %}
