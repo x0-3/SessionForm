@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SessionController!{% endblock %}
+
+{% block body %}
+
+{{form_start(formAddSession)}}
+
+    {{form_row(formAddSession.name)}}
+    {{form_row(formAddSession.beginDate)}}
+    {{form_row(formAddSession.endDate)}}
+    {{form_row(formAddSession.nb_place)}}
+
+{{form_end(formAddSession)}}
+
+{% endblock %}

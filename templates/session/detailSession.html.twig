@@ -3,6 +3,11 @@
 {% block title %}Hello SessionController!{% endblock %}
 
 {% block body %}
+
+<a href="{{path('edit_session', {'id': session.id})}}">edit</a>
+
+<a href="{{path('delete_session', {'id': session.id})}}">delete</a>
+
 <h1 class="text-center">{{session.name}}</h1>
 
 <h2>program</h2> <br>

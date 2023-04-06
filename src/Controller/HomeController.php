@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Program;
 use App\Entity\Session;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,6 +20,7 @@ class HomeController extends AbstractController
             'sessions' => $sessions,
         ]);
     }    
+
 
     #[Route('/home/{id}', name: 'detail_session')]
     public function detailSession(Session $session):Response
