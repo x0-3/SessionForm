@@ -5,6 +5,9 @@
 {% block body %}
 <h1 class="text-center">List of interns</h1>
 
+<a href="{{path('add_stagiaire')}}">add</a>
+
+
 {% for stagiaire in stagiaires %}
 
     <a href="{{path('detail_stagiaire', {'id': stagiaire.id})}}">{{ stagiaire.fullName }} </a> <br>
