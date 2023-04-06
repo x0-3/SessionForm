@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SessionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,6 +27,18 @@ class Session
 
     #[ORM\Column(nullable: true)]
     private ?int $nb_place = null;
+
+    #[ORM\ManyToMany(targetEntity: Stagiaire::class, mappedBy: 'stagiaire_session')]
+    private Collection $stagiaires;
+
+    #[ORM\OneToMany(mappedBy: 'session', targetEntity: Program::class)]
+    private Collection $programs;
+
+    public function __construct()
+    {
+        $this->stagiaires = new ArrayCollection();
+        $this->programs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -75,6 +89,63 @@ class Session
     public function setNbPlace(?int $nb_place): self
     {
         $this->nb_place = $nb_place;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Stagiaire>
+     */
+    public function getStagiaires(): Collection
+    {
+        return $this->stagiaires;
+    }
+
+    public function addStagiaire(Stagiaire $stagiaire): self
+    {
+        if (!$this->stagiaires->contains($stagiaire)) {
+            $this->stagiaires->add($stagiaire);
+            $stagiaire->addStagiaireSession($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStagiaire(Stagiaire $stagiaire): self
+    {
+        if ($this->stagiaires->removeElement($stagiaire)) {
+            $stagiaire->removeStagiaireSession($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Program>
+     */
+    public function getPrograms(): Collection
+    {
+        return $this->programs;
+    }
+
+    public function addProgram(Program $program): self
+    {
+        if (!$this->programs->contains($program)) {
+            $this->programs->add($program);
+            $program->setSession($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProgram(Program $program): self
+    {
+        if ($this->programs->removeElement($program)) {
+            // set the owning side to null (unless already changed)
+            if ($program->getSession() === $this) {
+                $program->setSession(null);
+            }
+        }
 
         return $this;
     }
