@@ -7,8 +7,7 @@
 
 {% for module in modules %}
     
-    {# TODO: link to onePage #}
-    <a href="#">{{ module.name }} </a>
+    <a href="{{path('detail_module', {'id': module.id})}}">{{ module.name }} </a>
 
 {% endfor %}
 

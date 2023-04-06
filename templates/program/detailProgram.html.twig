@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StagiaireController!{% endblock %}
+
+{% block body %}
+<h1 class="text-center">{{module.category.name}}</h1>
+
+{% for program in module.programs %}
+
+    <p>{{program.module.name}} {{program}}h <br></p>
+
+{% endfor %}
+
+
+
+{% endblock %}
