@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StagiaireController!{% endblock %}
+
+{% block body %}
+<h1 class="text-center">{{stagiaire.fullName}}</h1>
+
+<p>{{stagiaire}}</p></br>
+
+{% for session in stagiaire.stagiaireSession %}
+    
+    <a href="{{path('detail_session', {'id': session.id})}}"> {{session.name}} </a>
+    
+{% endfor %}
+
+
+
+{% endblock %}

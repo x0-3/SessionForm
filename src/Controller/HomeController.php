@@ -23,7 +23,7 @@ class HomeController extends AbstractController
     }    
 
     #[Route('/home/{id}', name: 'detail_session')]
-    public function detailSession(Session $session, ManagerRegistry $doctrine):Response
+    public function detailSession(Session $session):Response
     {
         return $this->render('session/detailSession.html.twig', [
             'session'=> $session,

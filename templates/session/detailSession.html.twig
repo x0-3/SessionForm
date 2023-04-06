@@ -9,7 +9,7 @@
 {% for program in session.programs %}
 
     {# TODO: #}
-    <a href="#">{{program.module.name}}{{program}} <br></a>
+    <a href="#">{{program.module.name}} {{program}}h <br></a>
 
 {% endfor %}
 
@@ -18,8 +18,7 @@
 
 {% for stagiaire in session.stagiaires %}
 
-    {# TODO: #}
-    <a href="#">{{stagiaire}} <br></a>
+    <a href="{{path('detail_stagiaire', {'id': stagiaire.id})}}">{{stagiaire.fullName}} <br></a>
 
 {% endfor %}
 {% endblock %}

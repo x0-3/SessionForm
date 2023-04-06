@@ -6,9 +6,8 @@
 <h1 class="text-center">List of interns</h1>
 
 {% for stagiaire in stagiaires %}
-    
-{# TODO: link to onePage #}
-<a href="#">{{ stagiaire.name }} {{stagiaire.lastName}} </a>
+
+    <a href="{{path('detail_stagiaire', {'id': stagiaire.id})}}">{{ stagiaire.fullName }} </a> <br>
 
 {% endfor %}
 {% endblock %}

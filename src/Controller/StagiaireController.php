@@ -20,4 +20,15 @@ class StagiaireController extends AbstractController
             'stagiaires' => $stagiaires,
         ]);
     }
+
+    #[Route('/stagiaire/{id}', name: 'detail_stagiaire')]
+    public function detail(Stagiaire $stagiaire): Response
+    {
+
+        return $this->render('stagiaire/detail.html.twig',[
+            'stagiaire'=>$stagiaire,
+        ]);
+
+    }
+
 }

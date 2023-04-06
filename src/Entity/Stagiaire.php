@@ -188,8 +188,19 @@ class Stagiaire
         return $this;
     }
 
+    public function fullName()
+    {
+        return $this->name ." ". $this->lastName;
+    }
+
     public function __toString()
     {
-        return $this->name . $this->lastName;
+     
+        return "Gender : ".$this->getGender().
+               "Adresse : ".$this->getAdresse().
+               "city : ".$this->getCity().
+               "Zip-code : ".$this->getZipCode().
+               "Email : ".$this->getEmail().
+               "Tel : ".$this->getTel();
     }
 }
