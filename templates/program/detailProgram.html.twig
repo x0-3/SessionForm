@@ -9,9 +9,12 @@
 <a href="{{path('delete_category', {'id': category.id})}}">delete</a>
 
 
+<a href="{{path('add_module')}}">add</a>
 {% for module in category.modules %}
 
     <p>{{module}} <br></p>
+    <a href="{{path('edit_module', {'id': module.id})}}">edit</a>
+    <a href="{{path('delete_module', {'id': module.id})}}">delete</a>
 
 {% endfor %}
 

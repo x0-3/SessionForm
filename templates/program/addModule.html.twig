@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ModuleController!{% endblock %}
+
+{% block body %}
+
+{{form_start(formAddModule)}}
+
+    {{form_row(formAddModule.name)}}
+    {{form_row(formAddModule.category)}}
+
+{{form_end(formAddModule)}}
+
+{% endblock %}
