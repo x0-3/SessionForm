@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ModuleController!{% endblock %}
+
+{% block body %}
+
+{{form_start(formAddProgram)}}
+
+    {{form_row(formAddProgram.duree)}}
+    {{form_row(formAddProgram.session)}}
+    {{form_row(formAddProgram.module)}}
+    {{form_row(formAddProgram.submit)}}
+
+{{form_end(formAddProgram)}}
+
+{% endblock %}

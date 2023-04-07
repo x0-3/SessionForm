@@ -11,8 +11,11 @@
 <h1 class="text-center">{{session.name}}</h1>
 
 <h2>program</h2> <br>
+
 {% for program in session.programs %}
 
+    <a href="{{path('edit_program', {'id':program.id})}}">edit</a>
+    <a href="{{path('delete_program', {'id':program.id})}}">delete</a>
     <a href="{{path('detail_module', {'id': program.module.id})}}">{{program.module.name}} {{program}}h <br></a>
 
 {% endfor %}

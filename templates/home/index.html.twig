@@ -7,9 +7,11 @@
 
     <a href="{{path('add_session')}}">add</a>
 
+
+    <a href="{{path('add_program')}}">add Program</a>
     {% for session in sessions %}
     
-        <a href=" {{path('detail_session', {'id': session.id})}}">{{ session.name }} </a>
+    <a href=" {{path('detail_session', {'id': session.id})}}">{{ session.name }} </a>
 
     {% endfor %}
 {% endblock %}
