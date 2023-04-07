@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
+
+{% block body %}
+
+{{form_start(formAddCategory)}}
+
+    {{form_row(formAddCategory.name)}}
+
+{{form_end(formAddCategory)}}
+
+{% endblock %}

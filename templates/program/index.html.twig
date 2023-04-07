@@ -5,10 +5,13 @@
 {% block body %}
 <h1 class="text-center">Programs</h1>
 
-{% for module in modules %}
-    
-    <a href="{{path('detail_module', {'id': module.id})}}">{{ module.name }} </a>
+<a href="{{path('add_category')}}">add</a>
 
+{% for category in categories %}
+
+    <a href="{{path('detail_module', {'id': category.id})}}">{{ category.name }} </a>
+
+    
 {% endfor %}
 
 {% endblock %}

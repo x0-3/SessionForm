@@ -3,14 +3,17 @@
 {% block title %}Hello StagiaireController!{% endblock %}
 
 {% block body %}
-<h1 class="text-center">{{module.category.name}}</h1>
+<h1 class="text-center">{{category.name}}</h1>
 
-{% for program in module.programs %}
+<a href="{{path('edit_category', {'id': category.id})}}">edit</a>
+<a href="{{path('delete_category', {'id': category.id})}}">delete</a>
 
-    <p>{{program.module.name}} {{program}}h <br></p>
+
+{% for module in category.modules %}
+
+    <p>{{module}} <br></p>
 
 {% endfor %}
-
 
 
 {% endblock %}
