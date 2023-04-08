@@ -3,15 +3,28 @@
 {% block title %}Hello ProgramController!{% endblock %}
 
 {% block body %}
-<h1 class="text-center">Programs</h1>
 
-<a href="{{path('add_category')}}">add</a>
+<section class="ml-9">
 
-{% for category in categories %}
+    <h1 class="text-center text-2xl font-semibold my-9">Programs</h1>
 
-    <a href="{{path('detail_module', {'id': category.id})}}">{{ category.name }} </a>
+    <div class="flex my-9" id="add_button">
 
+        <a class="p-1 w-20 rounded-md text-center mb-2.5" href="{{path('add_category')}}">add</a>
+    </div>
     
-{% endfor %}
+
+    <div class="flex flex-wrap justify-start">
+        {% for category in categories %}
+
+            <div id="session" class="flex justify-center items-center flex-col rounded-md h-36 w-72  mr-14 mb-14">
+
+                <a href="{{path('detail_module', {'id': category.id})}}">{{ category.name }} </a>
+            </div>    
+            
+        {% endfor %}
+    </div>
+
+</section>
 
 {% endblock %}
