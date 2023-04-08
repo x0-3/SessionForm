@@ -1,0 +1,23 @@
+* body {
+  background-color: #D3BEAD;
+  font-family: "Trykker", serif;
+}
+* body header {
+  background-color: #395B7F;
+  color: #EDDAE0;
+}
+* body h1 {
+  font-family: "Maven Pro", sans-serif;
+}
+* body #add_button a {
+  background-color: #395B7F;
+  color: #D3BEAD;
+}
+* body #add_button a:hover {
+  background-color: #D3BEAD;
+  color: #395B7F;
+}
+* body #session {
+  background-color: #161B18;
+  color: #D3BEAD;
+}/*# sourceMappingURL=style.css.map */

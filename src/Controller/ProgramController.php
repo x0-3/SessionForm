@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Module;
-use App\Entity\Program;
 use App\Form\CategoryType;
 use App\Form\ModuleType;
 use Doctrine\Persistence\ManagerRegistry;
