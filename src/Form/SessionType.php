@@ -3,7 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Session;
+use App\Entity\Stagiaire;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -20,6 +24,13 @@ class SessionType extends AbstractType
             ->add('beginDate', DateType::class)
             ->add('endDate', DateType::class)
             ->add('nb_place', IntegerType::class)
+
+            ->add('stagiaires', EntityType::class, [
+                'class' => Stagiaire::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+            ])
             ->add('submit', SubmitType::class)
         ;
     }
