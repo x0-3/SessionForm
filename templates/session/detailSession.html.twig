@@ -4,12 +4,12 @@
 
 {% block body %}
 
-<section class="ml-9">
+<section class="">
     <h1 class="text-center text-2xl font-semibold my-9">{{session.name}}</h1>
     
-    <h2 class="text-xl font-semibold my-9">program</h2> 
+    <h2 class="text-xl font-semibold my-9 ml-9">program</h2> 
     
-    <div class="flex flex-wrap justify-start">
+    <div class="flex flex-wrap justify-start ml-9">
 
         {% for program in session.programs %}
         
@@ -30,11 +30,11 @@
 
     
     
-    <br><h2 class="text-xl font-semibold my-9">interns for this session</h2>
+    <br><h2 class="text-xl font-semibold my-9 ml-9">interns for this session</h2>
     
     {% for stagiaire in session.stagiaires %}
     
-        <a href="{{path('detail_stagiaire', {'id': stagiaire.id})}}">{{stagiaire.fullName}} <br></a>
+        <a class="ml-9" href="{{path('detail_stagiaire', {'id': stagiaire.id})}}">{{stagiaire.fullName}} <br></a>
     
     {% endfor %}
 

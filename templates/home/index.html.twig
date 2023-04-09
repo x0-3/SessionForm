@@ -4,17 +4,17 @@
 
 {% block body %}
 
-    <section class="ml-9">
+    <section>
         
         <h1 class="text-center text-2xl font-semibold my-9">Home</h1>
     
-        <div class="flex mb-20" id="add_button">
+        <div class="flex mb-20 ml-9" id="add_button">
             
             <a class="p-2 rounded-md" href="{{path('add_session')}}">add Session</a>
             <a class="p-2 rounded-md ml-6" href="{{path('add_program')}}">add Program</a>
         </div>
 
-        <div class="flex flex-wrap justify-evenly">
+        <div class="flex flex-wrap justify-evenly ml-9">
             {% for session in sessions %}
 
                 <div id="session" class="flex rounded-md p-3 h-36 w-72"> 
