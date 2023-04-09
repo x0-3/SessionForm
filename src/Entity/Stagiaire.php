@@ -195,12 +195,16 @@ class Stagiaire
 
     public function __toString()
     {
-     
+        
+        echo "<pre>";
+
         return "Gender : ".$this->getGender().
-               "Adresse : ".$this->getAdresse().
-               "city : ".$this->getCity().
-               "Zip-code : ".$this->getZipCode().
-               "Email : ".$this->getEmail().
-               "Tel : ".$this->getTel();
+               "\r\nAdresse : ".$this->getAdresse().
+               "\r\ncity : ".$this->getCity().
+               "\r\nZip-code : ".$this->getZipCode().
+               "\r\nEmail : ".$this->getEmail().
+               "\r\nTel : ".$this->getTel();
+
+        echo "</pre>";
     }
 }

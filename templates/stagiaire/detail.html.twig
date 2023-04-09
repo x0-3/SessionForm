@@ -3,21 +3,37 @@
 {% block title %}Hello StagiaireController!{% endblock %}
 
 {% block body %}
-<h1 class="text-center">{{stagiaire.fullName}}</h1>
 
-<a href="{{path('edit_stagiaire', {'id': stagiaire.id})}}">edit</a>
+<section>
 
-<a href="{{path('delete_stagiaire', {'id': stagiaire.id})}}">delete</a>
-
-
-<p>{{stagiaire}}</p></br>
-
-{% for session in stagiaire.stagiaireSession %}
     
-    <a href="{{path('detail_session', {'id': session.id})}}"> {{session.name}} </a>
-    
-{% endfor %}
+    <h1 class="text-center text-2xl font-semibold my-9">{{stagiaire.fullName}}</h1>
 
+    <div class="flex my-9 ml-9" id="add_button">
+
+        <a class="p-2 rounded-md" href="{{path('edit_stagiaire', {'id': stagiaire.id})}}">edit</a>
+        
+        <a class="p-2 rounded-md ml-6" href="{{path('delete_stagiaire', {'id': stagiaire.id})}}">delete</a>
+    </div>
+    
+    <div class="ml-9">
+
+        <p>{{stagiaire}}</p></br>
+        
+        <div class="flex flex-wrap justify-evenly">
+
+            {% for session in stagiaire.stagiaireSession %}
+            <div id="session" class="flex justify-center items-center flex-col rounded-md h-36 w-72  mr-14 mb-14">
+
+                
+                <a href="{{path('detail_session', {'id': session.id})}}"> {{session.name}} </a>
+                
+            </div>
+            {% endfor %}
+        </div>
+        
+    </div>
+</section>
 
 
 {% endblock %}
