@@ -4,10 +4,13 @@
 
 {% block body %}
 
-{{form_start(formAddCategory)}}
+<section class="flex justify-center h-screen items-center">
 
+    {{form_start(formAddCategory, { 'attr': { 'class': 'flex flex-col items-center'}} )}}
+    
     {{form_row(formAddCategory.name)}}
-
-{{form_end(formAddCategory)}}
-
+    
+    {{form_end(formAddCategory)}}
+    
+</section>
 {% endblock %}

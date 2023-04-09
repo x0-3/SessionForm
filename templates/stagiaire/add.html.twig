@@ -4,20 +4,23 @@
 
 {% block body %}
 
-{{form_start(formAddStagiaire)}}
+<section class="flex justify-center min-h-screen items-center">
 
-    {{form_row(formAddStagiaire.name)}}
-    {{form_row(formAddStagiaire.lastName)}}
-    {{form_row(formAddStagiaire.gender)}}
-    {{form_row(formAddStagiaire.birthday)}}
-    {{form_row(formAddStagiaire.adresse)}}
-    {{form_row(formAddStagiaire.city)}}
-    {{form_row(formAddStagiaire.zipCode)}}
-    {{form_row(formAddStagiaire.email)}}
-    {{form_row(formAddStagiaire.tel)}}
-    {{form_row(formAddStagiaire.stagiaire_session)}}
-    {{form_row(formAddStagiaire.submit)}}
-
-{{form_end(formAddStagiaire)}}
-
+    {{form_start(formAddStagiaire, { 'attr': { 'class': 'flex flex-col items-center'}})}}
+    
+        {{form_row(formAddStagiaire.name)}}
+        {{form_row(formAddStagiaire.lastName)}}
+        {{form_row(formAddStagiaire.gender)}}
+        {{form_row(formAddStagiaire.birthday)}}
+        {{form_row(formAddStagiaire.adresse)}}
+        {{form_row(formAddStagiaire.city)}}
+        {{form_row(formAddStagiaire.zipCode)}}
+        {{form_row(formAddStagiaire.email)}}
+        {{form_row(formAddStagiaire.tel)}}
+        {{form_row(formAddStagiaire.stagiaire_session)}}
+        {{form_row(formAddStagiaire.submit)}}
+    
+    {{form_end(formAddStagiaire)}}
+    
+</section>
 {% endblock %}

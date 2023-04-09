@@ -4,11 +4,14 @@
 
 {% block body %}
 
-{{form_start(formAddModule)}}
+<section class="flex justify-center h-screen items-center">
 
-    {{form_row(formAddModule.name)}}
-    {{form_row(formAddModule.category)}}
-
-{{form_end(formAddModule)}}
-
+    {{form_start(formAddModule, { 'attr': { 'class': 'flex flex-col items-center'}})}}
+    
+        {{form_row(formAddModule.name)}}
+        {{form_row(formAddModule.category, { 'attr': { 'class': 'flex flex-col w-80 mb-5 p-1.5 rounded-lg'}})}}
+    
+    {{form_end(formAddModule)}}
+    
+</section>
 {% endblock %}

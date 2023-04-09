@@ -18,10 +18,34 @@ class SessionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('beginDate', DateType::class)
-            ->add('endDate', DateType::class)
-            ->add('nb_place', IntegerType::class)
+            ->add('name', TextType::class, array(
+                'label' => false,
+                'attr' => array(
+                    'placeholder' => 'Name',
+                    'class' => 'w-80 mb-5 p-1.5 rounded-lg',
+
+                )
+            ))
+            ->add('beginDate', DateType::class, array(
+                'attr' => array(
+                    'class' => 'w-80 mb-5 p-1.5 rounded-lg',
+
+                )
+            ))
+            ->add('endDate', DateType::class, array(
+                'attr' => array(
+                    'class' => 'w-80 mb-5 p-1.5 rounded-lg',
+
+                )
+            ))
+            ->add('nb_place', IntegerType::class, array(
+                'label' => false,
+                'attr' => array(
+                    'placeholder' => 'number of place',
+                    'class' => 'w-80 mb-5 p-1.5 rounded-lg',
+
+                )
+            ))
 
             // ->add('stagiaires', EntityType::class, [
             //     'class' => Stagiaire::class,
@@ -29,7 +53,11 @@ class SessionType extends AbstractType
             //     'multiple' => true,
             //     'expanded' => true,
             // ])
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, array(
+                'attr' => array(
+                    'class' => 'justify-center w-28 mb-5 p-1.5 rounded-lg bg-gray-500',
+                )
+            ))
         ;
     }
 

@@ -4,13 +4,16 @@
 
 {% block body %}
 
-{{form_start(formAddProgram)}}
+<section class="flex justify-center h-screen items-center">
 
-    {{form_row(formAddProgram.duree)}}
-    {{form_row(formAddProgram.session)}}
-    {{form_row(formAddProgram.module)}}
-    {{form_row(formAddProgram.submit)}}
-
-{{form_end(formAddProgram)}}
-
+    {{form_start(formAddProgram)}}
+    
+        {{form_row(formAddProgram.duree)}}
+        {{form_row(formAddProgram.session, { 'attr': { 'class': 'flex flex-col w-80 mb-5 p-1.5 rounded-lg'}}) }}
+        {{form_row(formAddProgram.module, { 'attr': { 'class': 'flex flex-col w-80 mb-5 p-1.5 rounded-lg'}})}}
+        {{form_row(formAddProgram.submit)}}
+    
+    {{form_end(formAddProgram)}}
+    
+</section>
 {% endblock %}

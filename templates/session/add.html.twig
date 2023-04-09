@@ -4,14 +4,20 @@
 
 {% block body %}
 
-{{form_start(formAddSession)}}
+<section class="flex justify-center h-screen items-center">
 
+    
+    {{form_start(formAddSession, { 'attr': { 'class': 'flex flex-col items-center'}})  }}
+    
     {{form_row(formAddSession.name)}}
     {{form_row(formAddSession.beginDate)}}
     {{form_row(formAddSession.endDate)}}
     {{form_row(formAddSession.nb_place)}}
     {# {{form_row(formAddSession.stagiaires)}} #}
 
-{{form_end(formAddSession)}}
-
+    {{form_row(formAddSession.submit)}}
+    
+    {{form_end(formAddSession)}}
+    
+</section>
 {% endblock %}

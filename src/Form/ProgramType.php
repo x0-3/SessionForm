@@ -17,14 +17,28 @@ class ProgramType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('duree', IntegerType::class)
+            ->add('duree', IntegerType::class, array(
+                'label' => false,
+                'attr' => array(
+                    'placeholder' => 'duree',
+                    'class' => 'w-80 mb-5 p-1.5 rounded-lg',
+
+                )
+            ))
+
             ->add('session', EntityType::class,[
                 'class'=>Session::class,
                 'choice_label' => 'name'])
+
             ->add('module', EntityType::class,[
                 'class'=>Module::class,
                 'choice_label' => 'name'])
-            ->add('submit',SubmitType::class)
+
+            ->add('submit',SubmitType::class, array(
+                'attr' => array(
+                    'class' => 'justify-center w-28 mb-5 p-1.5 rounded-lg bg-gray-500',
+                )
+            ))
         ;
     }
 
