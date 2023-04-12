@@ -28,16 +28,16 @@ class Session
     #[ORM\Column(nullable: true)]
     private ?int $nb_place = null;
 
+    #[ORM\ManyToMany(targetEntity: Stagiaire::class, mappedBy: 'stagiaire_session')]
+    private Collection $stagiaires;
+
     #[ORM\OneToMany(mappedBy: 'session', targetEntity: Program::class)]
     private Collection $programs;
 
-    #[ORM\ManyToMany(targetEntity: Stagiaire::class, mappedBy: 'stagiaire_session')]
-    private Collection $stagiaire_session;
-
     public function __construct()
     {
+        $this->stagiaires = new ArrayCollection();
         $this->programs = new ArrayCollection();
-        $this->stagiaire_session = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -94,6 +94,33 @@ class Session
     }
 
     /**
+     * @return Collection<int, Stagiaire>
+     */
+    public function getStagiaires(): Collection
+    {
+        return $this->stagiaires;
+    }
+
+    public function addStagiaire(Stagiaire $stagiaire): self
+    {
+        if (!$this->stagiaires->contains($stagiaire)) {
+            $this->stagiaires->add($stagiaire);
+            $stagiaire->addStagiaireSession($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStagiaire(Stagiaire $stagiaire): self
+    {
+        if ($this->stagiaires->removeElement($stagiaire)) {
+            $stagiaire->removeStagiaireSession($this);
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Collection<int, Program>
      */
     public function getPrograms(): Collection
@@ -118,33 +145,6 @@ class Session
             if ($program->getSession() === $this) {
                 $program->setSession(null);
             }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Stagiaire>
-     */
-    public function getStagiaireSession(): Collection
-    {
-        return $this->stagiaire_session;
-    }
-
-    public function addStagiaireSession(Stagiaire $stagiaireSession): self
-    {
-        if (!$this->stagiaire_session->contains($stagiaireSession)) {
-            $this->stagiaire_session->add($stagiaireSession);
-            $stagiaireSession->addStagiaireSession($this);
-        }
-
-        return $this;
-    }
-
-    public function removeStagiaireSession(Stagiaire $stagiaireSession): self
-    {
-        if ($this->stagiaire_session->removeElement($stagiaireSession)) {
-            $stagiaireSession->removeStagiaireSession($this);
         }
 
         return $this;

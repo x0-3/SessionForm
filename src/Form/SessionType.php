@@ -47,8 +47,7 @@ class SessionType extends AbstractType
                 )
             ))
 
-            ->add('stagiaire_session', EntityType::class, [
-                'label' => 'interns : ',
+            ->add('stagiaires', EntityType::class, [
                 'class' => Stagiaire::class,
                 'choice_label' => 'name',
                 'multiple' => true,

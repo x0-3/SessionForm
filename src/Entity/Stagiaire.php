@@ -43,7 +43,7 @@ class Stagiaire
     #[ORM\Column(length: 50)]
     private ?string $tel = null;
 
-    #[ORM\ManyToMany(targetEntity: Session::class, inversedBy: 'stagiaire_session')]
+    #[ORM\ManyToMany(targetEntity: Session::class, inversedBy: 'stagiaires')]
     private Collection $stagiaire_session;
 
     public function __construct()
@@ -164,26 +164,6 @@ class Stagiaire
         return $this;
     }
 
-    public function fullName()
-    {
-        return $this->name ." ". $this->lastName;
-    }
-
-    public function __toString()
-    {
-        
-        echo "<pre>";
-
-        return "Gender : ".$this->getGender().
-               "\r\nAdresse : ".$this->getAdresse().
-               "\r\ncity : ".$this->getCity().
-               "\r\nZip-code : ".$this->getZipCode().
-               "\r\nEmail : ".$this->getEmail().
-               "\r\nTel : ".$this->getTel();
-
-        echo "</pre>";
-    }
-
     /**
      * @return Collection<int, Session>
      */
@@ -206,5 +186,25 @@ class Stagiaire
         $this->stagiaire_session->removeElement($stagiaireSession);
 
         return $this;
+    }
+
+    public function fullName()
+    {
+        return $this->name ." ". $this->lastName;
+    }
+
+    public function __toString()
+    {
+        
+        echo "<pre>";
+
+        return "Gender : ".$this->getGender().
+               "\r\nAdresse : ".$this->getAdresse().
+               "\r\ncity : ".$this->getCity().
+               "\r\nZip-code : ".$this->getZipCode().
+               "\r\nEmail : ".$this->getEmail().
+               "\r\nTel : ".$this->getTel();
+
+        echo "</pre>";
     }
 }
