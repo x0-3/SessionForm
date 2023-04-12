@@ -89,11 +89,13 @@ class HomeController extends AbstractController
     public function detailSession(EntityManagerInterface $entityManager, Session $session, Stagiaire $stagiaires):Response
     {
 
-        $stagiaires = $entityManager->getRepository(Stagiaire::class)->findInternsNotInSession($session->getId());
+        // FIXME:
+
+        // $stagiaires = $entityManager->getRepository(Stagiaire::class)->findInternsNotInSession($session->getId());
 
         return $this->render('session/detailSession.html.twig', [
             'session'=> $session,
-            "stagiaires" => $stagiaires,
+            // "stagiaires" => $stagiaires,
         ]);
     }
 

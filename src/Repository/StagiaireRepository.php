@@ -40,30 +40,30 @@ class StagiaireRepository extends ServiceEntityRepository
     }
 
     // FIXME:
-    public function findInternsNotInSession($id): array
-    {
-        $qb  = $this->_em->createQueryBuilder();
+    // public function findInternsNotInSession($id): array
+    // {
+    //     $qb  = $this->_em->createQueryBuilder();
 
-        $nots = $qb->select('st')
-        ->from('App\Entity\Stagiaire', 'st')
-        ->innerJoin('st.stagiaire_session', 'ss')
-        ->Where($qb->expr()->eq('ss.id', ':id'))
-        ->setParameter('id',$id);
-
-
-        $linked = $qb->select('ss')
-        ->from('App\Entity\Stagiaire', 'ss')
-        ->where($qb->expr()->notIn('ss.id', $nots->getDQL()));
+    //     $nots = $qb->select('st')
+    //     ->from('App\Entity\Stagiaire', 'st')
+    //     ->innerJoin('st.stagiaire_session', 'ss')
+    //     ->Where($qb->expr()->eq('ss.id', ':id'))
+    //     ->setParameter('id',$id);
 
 
-        return $linked->getQuery()->getResult();
+    //     $linked = $qb->select('ss')
+    //     ->from('App\Entity\Stagiaire', 'ss')
+    //     ->where($qb->expr()->notIn('ss.id', $nots->getDQL()));
 
-        // SELECT *
-        // FROM stagiaire st
-        // WHERE st.id NOT IN (SELECT stagiaire_id FROM stagiaire_session ss 
-        // WHERE ss.session_id = 1)
 
-    }
+    //     return $linked->getQuery()->getResult();
+
+    //     // SELECT *
+    //     // FROM stagiaire st
+    //     // WHERE st.id NOT IN (SELECT stagiaire_id FROM stagiaire_session ss 
+    //     // WHERE ss.session_id = 1)
+
+    // }
 
     
     
