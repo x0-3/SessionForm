@@ -128,14 +128,6 @@ class ProgramController extends AbstractController
     }
 
 
-
-
-
-
-
-
-
-
     // 
     #[Route('/program/{id}', name: 'detail_module')]
     public function detail(Module $module, Category $category):Response

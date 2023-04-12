@@ -4,11 +4,15 @@
 
 {% block body %}
 
-<section class="">
+<section>
     <h1 class="text-center text-2xl font-semibold my-9">{{session.name}}</h1>
     
+    <div class="flex mb-20 ml-9" id="add_button">
+        <a class="p-2 rounded-md" href="{{path('add_program',{'id': session.id})}}">add Program</a>
+    </div>
+
     <h2 class="text-xl font-semibold my-9 ml-9">program</h2> 
-    
+
     <div class="flex flex-wrap justify-start ml-9">
 
         {% for program in session.programs %}
@@ -23,7 +27,6 @@
                 </div>
             </div>
             
-            
         
         {% endfor %}
     </div>
@@ -35,7 +38,15 @@
     {% for stagiaire in session.stagiaires %}
     
         <a class="ml-9" href="{{path('detail_stagiaire', {'id': stagiaire.id})}}">{{stagiaire.fullName}} <br></a>
-    
+        
+        <div class="flex ml-9" id="add_button">
+            <a class="p-1 w-20 rounded-md text-center mb-2.5" href="{{path('edit_stagiaire', {'id':stagiaire.id})}}">edit</a>
+
+        </div>
+    {% endfor %}
+
+    {% for stagiaire in stagiaires %}
+        {{ dump(stagiaire.name) }}
     {% endfor %}
 
 </section>

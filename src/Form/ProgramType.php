@@ -10,6 +10,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProgramType extends AbstractType
@@ -26,6 +29,14 @@ class ProgramType extends AbstractType
                 )
             ))
 
+            // ->add('session', EntityType::class,
+            // [
+            //     'class'=>Session::class,
+            //     'choice_label' => function (Session $session){
+            //         return $session->getId();
+            //     }
+            // ])
+
             ->add('session', EntityType::class,[
                 'class'=>Session::class,
                 'choice_label' => 'name'])
@@ -40,6 +51,9 @@ class ProgramType extends AbstractType
                 )
             ))
         ;
+
+
+    
     }
 
     public function configureOptions(OptionsResolver $resolver): void

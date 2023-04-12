@@ -47,12 +47,13 @@ class SessionType extends AbstractType
                 )
             ))
 
-            // ->add('stagiaires', EntityType::class, [
-            //     'class' => Stagiaire::class,
-            //     'choice_label' => 'name',
-            //     'multiple' => true,
-            //     'expanded' => true,
-            // ])
+            ->add('stagiaires', EntityType::class, [
+                'class' => Stagiaire::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+            ])
+            
             ->add('submit', SubmitType::class, array(
                 'attr' => array(
                     'class' => 'justify-center w-28 mb-5 p-1.5 rounded-lg bg-gray-500',
