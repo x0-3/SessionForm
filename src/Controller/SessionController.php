@@ -78,13 +78,18 @@ class SessionController extends AbstractController
     #[Route('/session/{id}/deleteStagiaire/{idStagiaire}', name: 'delete_stagiaire_session')] 
     public function addToSession(EntityManagerInterface $entityManager, Session $session, int $id, int $idStagiaire): Response 
     { 
+        
         $stagiaire = $entityManager->getRepository(Stagiaire::class)->find($idStagiaire); // Récupère le stagiaire à ajouter 
         
+            
+        // if the intern is already in the current session
         if ($session->getStagiaireSession()->contains($stagiaire)) { 
             
-            // we look if the intern is already in the current session
             $session->removeStagiaireSession($stagiaire); // remove the intern from the session
-        } else { 
+
+            // else if the number of interns is below the number of space then
+        } else if($session->getStagiaireSession()->count() < $session->getNbPlace()) { 
+
             $session->addStagiaireSession($stagiaire); // add the intern from the session 
         } 
         $entityManager->flush(); // execute the request and insert in db
