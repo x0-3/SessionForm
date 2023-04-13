@@ -68,9 +68,19 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('detail_session',['id'=>$program->getSession()->getId()]);
         }
 
+        if (!$program) {
+
+            // vue to show form
+            return $this->render('home/add.html.twig', [
+                'session'=> $session,
+                'formAddProgram'=> $form->createView(),
+                'edit'=> $program->getId(),     
+            ]);
+        }
+
         // vue to show form
         return $this->render('home/add.html.twig', [
-            'session'=> $session,
+            // 'session'=> $session,
             'formAddProgram'=> $form->createView(),
             'edit'=> $program->getId(),     
         ]);
