@@ -6,7 +6,9 @@
 
 <section class="flex justify-center h-screen items-center">
 
-    {{form_start(formAddProgram)}}
+    {{ dump(formAddProgram.session) }}
+
+    {{form_start(formAddProgram, {'attr': {'id': 'add_program'}})}}
     
         {{form_row(formAddProgram.duree)}}
         {{form_row(formAddProgram.session, { 'attr': { 'class': 'flex flex-col w-80 mb-5 p-1.5 rounded-lg'}}) }}

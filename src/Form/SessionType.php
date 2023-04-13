@@ -6,7 +6,10 @@ use App\Entity\Session;
 use App\Entity\Stagiaire;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -47,14 +50,14 @@ class SessionType extends AbstractType
                 )
             ))
 
-            ->add('stagiaire_session', EntityType::class, [
-                'label' => 'interns : ',
-                'class' => Stagiaire::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
-            ])
-            
+            // ->add('stagiaire_session', EntityType::class, [
+            //     'label' => 'interns : ',
+            //     'class' => Stagiaire::class,
+            //     'choice_label' => 'name',
+            //     'multiple' => true,
+            //     'expanded' => true,
+            // ])
+
             ->add('submit', SubmitType::class, array(
                 'attr' => array(
                     'class' => 'justify-center w-28 mb-5 p-1.5 rounded-lg bg-gray-500',

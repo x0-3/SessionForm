@@ -31,31 +31,33 @@ class HomeController extends AbstractController
 
 
 
-    #[Route('/home/add', name: 'add_program')]
+    #[Route('/home/{id}/add', name: 'add_program')]
     #[Route('/home/{id}/edit', name: 'edit_program')]
-    public function addProgram(ManagerRegistry $doctrine, Program $program = null, Request $request): Response
+    public function addProgram(ManagerRegistry $doctrine, $id, Program $program = null, Request $request): Response
     {
-
-        // $session = $doctrine->getRepository(Session::class)->find($id);
         
-
         // if the entreprise id doesn't exist then create it
         if (!$program) {
+            
+            $repo = $doctrine->getRepository(Session::class); //get the repo from session
+            $session = $repo->find($id); //find the id of the session
+
             $program = new Program();
         }
         // else edit
 
-        // $program->setSession($session);
-
+        
         // create a form that refers to the builder in employeType
         $form = $this->createForm(ProgramType::class);
-
+        
         $form ->handleRequest($request); //analyse whats in the request / gets the data
-
+        
         // if the form is submitted and check security 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            
             $program = $form->getData(); // get the data submitted in form and hydrate the object 
+           
+            $program->setSession($session); //set the id from the form into the variable program
             
             // need the doctrine manager to get persist and flush
             $entityManager = $doctrine->getManager(); 
@@ -68,7 +70,8 @@ class HomeController extends AbstractController
 
         // vue to show form
         return $this->render('home/add.html.twig', [
-            'formAddProgram'=> $form->createView(), 
+            'session'=> $session,
+            'formAddProgram'=> $form->createView(),
             'edit'=> $program->getId(),     
         ]);
     }
