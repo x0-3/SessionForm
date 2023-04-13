@@ -32,24 +32,38 @@
     </div>
 
     
-    
-    <br><h2 class="text-xl font-semibold my-9 ml-9">interns for this session</h2>
-    
-    {% for stagiaire in session.stagiaireSession %}
-    
-        <a class="ml-9" href="{{path('detail_stagiaire', {'id': stagiaire.id})}}">{{stagiaire.fullName}} <br></a>
+    <div class="flex justify-around mb-9">
+
+        <div>
+            <br><h2 class="text-xl font-semibold my-9 ml-9">interns for this session</h2>
+            
+            {% for stagiaire in session.stagiaireSession %}
+            
+                <a class="ml-9" href="{{path('detail_stagiaire', {'id': stagiaire.id})}}">{{stagiaire.fullName}} <br></a>
+                
+                <div class="flex ml-9" id="add_button">
+                    <a class="p-1 w-20 rounded-md text-center mb-2.5" href="{{path('edit_stagiaire', {'id':stagiaire.id})}}">edit</a>
         
-        <div class="flex ml-9" id="add_button">
-            <a class="p-1 w-20 rounded-md text-center mb-2.5" href="{{path('edit_stagiaire', {'id':stagiaire.id})}}">edit</a>
+                </div>
+            {% endfor %}
 
         </div>
-    {% endfor %}
+    
+        <div>
+            <br><h2 class="text-xl font-semibold my-9 ml-9">interns not in this session</h2>
+        
+            {% for stagiaire in stagiaires %}
+                <a class="ml-9" href="{{path('detail_stagiaire', {'id': stagiaire.id})}}">{{stagiaire.fullName}} <br></a>
+        
+                <div class="flex ml-9" id="add_button">
+                    <a class="p-1 w-20 rounded-md text-center mb-2.5" href="{{path('edit_stagiaire', {'id':stagiaire.id})}}">edit</a>
+        
+                </div>
+            {% endfor %}
 
-    {# // FIXME: #}
+        </div>
 
-    {% for stagiaire in stagiaires %}
-        {{ dump(stagiaire) }}
-    {% endfor %}
+    </div>
 
 </section>
 

@@ -86,7 +86,7 @@ class HomeController extends AbstractController
     }
 
     #[Route('/home/{id}', name: 'detail_session')]
-    public function detailSession(EntityManagerInterface $entityManager, Session $session,Stagiaire $stagiaires):Response
+    public function detailSession(EntityManagerInterface $entityManager, Session $session):Response
     {
 
         $stagiaires = $entityManager->getRepository(Stagiaire::class)->findInternsNotInSession($session->getId());
