@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Session;
+use App\Entity\Stagiaire;
 use App\Form\SessionType;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -69,4 +71,25 @@ class SessionController extends AbstractController
         return $this->redirectToRoute('app_home');
 
     }
+
+    // add stagiaire to session
+    // delete stagiaire to session
+    #[Route('/session/{id}/addStagiaire/{idStagiaire}', name: 'add_stagiaire_session')] 
+    #[Route('/session/{id}/deleteStagiaire/{idStagiaire}', name: 'delete_stagiaire_session')] 
+    public function addToSession(EntityManagerInterface $entityManager, Session $session, int $id, int $idStagiaire): Response 
+    { 
+        $stagiaire = $entityManager->getRepository(Stagiaire::class)->find($idStagiaire); // Récupère le stagiaire à ajouter 
+        
+        if ($session->getStagiaireSession()->contains($stagiaire)) { 
+            
+            // we look if the intern is already in the current session
+            $session->removeStagiaireSession($stagiaire); // remove the intern from the session
+        } else { 
+            $session->addStagiaireSession($stagiaire); // add the intern from the session 
+        } 
+        $entityManager->flush(); // execute the request and insert in db
+        
+        return $this->redirectToRoute('detail_session', ['id' => $id]); // redirect  
+    }
+
 }

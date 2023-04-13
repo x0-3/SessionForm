@@ -41,9 +41,9 @@
             
                 <a class="ml-9" href="{{path('detail_stagiaire', {'id': stagiaire.id})}}">{{stagiaire.fullName}} <br></a>
                 
-                <div class="flex ml-9" id="add_button">
-                    <a class="p-1 w-20 rounded-md text-center mb-2.5" href="{{path('edit_stagiaire', {'id':stagiaire.id})}}">edit</a>
-        
+                <div class="flex ml-9">
+                    <a class="bg-red-700 p-1 w-20 rounded-md text-center mb-2.5" href="{{path('delete_stagiaire_session', {'id': session.id, 'idStagiaire': stagiaire.id})}}">Delete</a>
+
                 </div>
             {% endfor %}
 
@@ -54,12 +54,12 @@
         
             {% for stagiaire in stagiaires %}
                 <a class="ml-9" href="{{path('detail_stagiaire', {'id': stagiaire.id})}}">{{stagiaire.fullName}} <br></a>
-        
+                
                 <div class="flex ml-9" id="add_button">
-                    <a class="p-1 w-20 rounded-md text-center mb-2.5" href="{{path('edit_stagiaire', {'id':stagiaire.id})}}">edit</a>
-        
+                    <a class="p-1 w-20 rounded-md text-center mb-2.5" href="{{path('add_stagiaire_session', {'id': session.id, 'idStagiaire': stagiaire.id})}}">add</a>
+
                 </div>
-            {% endfor %}
+            {% endfor %}    
 
         </div>
 
