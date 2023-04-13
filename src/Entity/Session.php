@@ -93,6 +93,12 @@ class Session
         return $this;
     }
 
+
+    public function currentNbPlace(){
+
+        return $this->nb_place - $this->stagiaire_session->count();
+    }
+
     /**
      * @return Collection<int, Program>
      */

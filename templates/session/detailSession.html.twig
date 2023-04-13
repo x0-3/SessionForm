@@ -5,7 +5,13 @@
 {% block body %}
 
 <section>
-    <h1 class="text-center text-2xl font-semibold my-9">{{session.name}}</h1>
+
+    <div class="flex justify-center flex-row items-center">
+
+        <h1 class="text-center text-2xl font-semibold my-9 mr-12">{{session.name}}</h1>
+        <p>space left : {{ session.currentNbPlace}}</p>
+    </div>
+
     
     <div class="flex mb-20 ml-9" id="add_button">
         <a class="p-2 rounded-md" href="{{path('add_program',{'id': session.id})}}">add Program</a>

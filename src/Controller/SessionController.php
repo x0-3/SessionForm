@@ -93,7 +93,7 @@ class SessionController extends AbstractController
             $session->addStagiaireSession($stagiaire); // add the intern from the session 
         } 
         $entityManager->flush(); // execute the request and insert in db
-        
+
         return $this->redirectToRoute('detail_session', ['id' => $id]); // redirect  
     }
 
