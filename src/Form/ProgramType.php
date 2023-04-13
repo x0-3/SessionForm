@@ -33,7 +33,7 @@ class ProgramType extends AbstractType
             // [
             //     'class'=>Session::class,
             //     'choice_label' => function (Session $session){
-            //         return $session->getId();
+            //         return $_GET['id'];;
             //     }
             // ])
 

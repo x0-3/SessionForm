@@ -8,6 +8,7 @@ use App\Entity\Stagiaire;
 use App\Form\ProgramType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\Id;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,19 +36,19 @@ class HomeController extends AbstractController
     public function addProgram(ManagerRegistry $doctrine, Program $program = null, Request $request): Response
     {
 
+        // $session = $doctrine->getRepository(Session::class)->find($id);
+        
+
         // if the entreprise id doesn't exist then create it
         if (!$program) {
-            
             $program = new Program();
         }
         // else edit
 
-        // $sessionId = $request->attributes->get('session');
+        // $program->setSession($session);
 
         // create a form that refers to the builder in employeType
-        $form = $this->createForm(ProgramType::class, 
-        // $program, ['session' => $sessionId]
-        );
+        $form = $this->createForm(ProgramType::class);
 
         $form ->handleRequest($request); //analyse whats in the request / gets the data
 
@@ -67,11 +68,10 @@ class HomeController extends AbstractController
 
         // vue to show form
         return $this->render('home/add.html.twig', [
-            'formAddProgram'=> $form->createView(),   
+            'formAddProgram'=> $form->createView(), 
             'edit'=> $program->getId(),     
         ]);
     }
-
 
 
     #[Route('/home/{id}/delete', name: 'delete_program')]
@@ -86,16 +86,14 @@ class HomeController extends AbstractController
     }
 
     #[Route('/home/{id}', name: 'detail_session')]
-    public function detailSession(EntityManagerInterface $entityManager, Session $session, Stagiaire $stagiaires):Response
+    public function detailSession(EntityManagerInterface $entityManager, Session $session,Stagiaire $stagiaires):Response
     {
 
-        // FIXME:
-
-        // $stagiaires = $entityManager->getRepository(Stagiaire::class)->findInternsNotInSession($session->getId());
+        $stagiaires = $entityManager->getRepository(Stagiaire::class)->findInternsNotInSession($session->getId());
 
         return $this->render('session/detailSession.html.twig', [
             'session'=> $session,
-            // "stagiaires" => $stagiaires,
+            "stagiaires" => $stagiaires,
         ]);
     }
 
