@@ -27,7 +27,7 @@
                 <a class="text-xl text-center mb-3" href="{{path('detail_module', {'id': program.module.id})}}">{{program.module.name}} <br> {{program}}h <br></a>
 
                 <div id="add_button">
-                    <a class="p-1 w-20 rounded-md text-center mb-2.5" href="{{path('edit_program', {'id':program.id, 'idSession':session.id})}}">edit</a>
+                    <a class="p-1 w-20 rounded-md text-center mb-2.5" href="{{path('edit_program', {'id':program.id})}}">edit</a>
                     <a class="p-1 w-20 rounded-md text-center mb-2.5" href="{{path('delete_program', {'id':program.id})}}">delete</a>
         
                 </div>

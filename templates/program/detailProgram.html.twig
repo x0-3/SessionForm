@@ -11,7 +11,7 @@
     <div class="flex my-9 ml-9" id="add_button">
         <a class="p-2 rounded-md" href="{{path('edit_category', {'id': category.id})}}">edit category</a>
         <a class="p-2 rounded-md ml-6" href="{{path('delete_category', {'id': category.id})}}">delete category</a>
-        <a class="p-2 rounded-md ml-6" href="{{path('add_module')}}">add modules</a>
+        <a class="p-2 rounded-md ml-6" href="{{path('add_module', {'idCategory': category.id})}}">add modules</a>
     </div>
     
     <div class="flex flex-wrap justify-evenly">

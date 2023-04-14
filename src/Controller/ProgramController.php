@@ -79,16 +79,14 @@ class ProgramController extends AbstractController
     }
 
     // ********************************************* add edit and delete a module *********************** //
-    #[Route('/program/addModule', name: 'add_module')]
-    #[Route('/program/{id}/editModule', name: 'edit_module')]
-    public function addModule(ManagerRegistry $docrine, Module $module = null, Request $request)
+    #[Route('/program/{idCategory}/addModule', name: 'add_module')]
+    public function addModule(ManagerRegistry $doctrine, $idCategory, Module $module = null, Request $request)
     {
 
-        // if the entreprise id doesn't exist then create it
-        if (!$module) {
-            $module = new Module();
-        }
-        // else edit
+        $module = new Module();
+
+        $repo = $doctrine->getRepository(Category::class); //get the repo from session
+        $category = $repo->find($idCategory); //find the id of the session
 
         // create a form that refers to the builder in employeType
         $form = $this->createForm(ModuleType::class, $module);
@@ -99,22 +97,53 @@ class ProgramController extends AbstractController
 
             $module = $form->getData(); // get the data submitted in form and hydrate the object 
 
+            $module->setCategory($category); //set the id from the form into the variable program
+
             // need the doctrine manager to get persist and flush
-            $entityManager = $docrine->getManager(); 
+            $entityManager = $doctrine->getManager(); 
             $entityManager->persist($module); // prepare
             $entityManager->flush(); // execute
 
             // redirect to list employe
-            return $this->redirectToRoute('app_module');
+            return $this->redirectToRoute('detail_module', ['id' => $idCategory]);
         }
 
         // vue to show form
         return $this->render('program/addModule.html.twig', [
-
+            'category'=> $category,
             'formAddModule'=> $form->createView(),   
             'edit'=> $module->getId(),   
         ]);
     }
+
+
+    #[Route('/program/{id}/editModule', name: 'edit_module')]
+    public function edit(ManagerRegistry $doctrine,Request $request)
+    {
+        $id = $request->get('id');
+        $module = $doctrine->getRepository(Module::class)->find($id);
+
+        // create a form that refers to the builder in employeType
+        $form = $this->createForm(ModuleType::class,$module);
+        $form->handleRequest($request);
+
+        // if the form is submitted and check security
+        if($form->isSubmitted() && $form->isValid()){
+            
+            $em = $doctrine->getManager();
+            $categoryData = $form->getData();
+            $em->persist($categoryData);
+            $em->flush();
+
+            return $this->redirectToRoute('detail_module',['id'=>$module->getCategory()->getId()]);
+
+        }
+
+        return $this->render('program/addModule.html.twig',array(
+            'formAddModule'=> $form->createView(),   
+        ));
+    }
+
 
     #[Route('/program/{id}/deleteModule', name: 'delete_module')]
     public function deleteModule(ManagerRegistry $docrine, Module $module):Response
@@ -128,7 +157,6 @@ class ProgramController extends AbstractController
     }
 
 
-    // 
     #[Route('/program/{id}', name: 'detail_module')]
     public function detail(Module $module, Category $category):Response
     {

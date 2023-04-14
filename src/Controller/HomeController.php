@@ -32,16 +32,10 @@ class HomeController extends AbstractController
 
 
     #[Route('/home/{idSession}/add', name: 'add_program')]
-    #[Route('/home/{id}/edit/{idSession}', name: 'edit_program')]
     public function addProgram(ManagerRegistry $doctrine, $idSession, Program $program = null, Request $request): Response
     {
-        
-
-        // if the entreprise id doesn't exist then create it
-        if (!$program) {
-            $program = new Program();
-        }
-        // else edit
+    
+        $program = new Program();
 
         $repo = $doctrine->getRepository(Session::class); //get the repo from session
         $session = $repo->find($idSession); //find the id of the session
@@ -76,6 +70,33 @@ class HomeController extends AbstractController
         ]);
     }
 
+    #[Route('/home/{id}/edit', name: 'edit_program')]
+    public function edit(ManagerRegistry $doctrine,Request $request)
+    {
+        $id = $request->get('id');
+        $program = $doctrine->getRepository(Program::class)->find($id);
+
+        // create a form that refers to the builder in employeType
+        $form = $this->createForm(ProgramType::class,$program);
+        $form->handleRequest($request);
+
+        // if the form is submitted and check security
+        if($form->isSubmitted() && $form->isValid()){
+            
+            $em = $doctrine->getManager();
+            $categoryData = $form->getData();
+            $em->persist($categoryData);
+            $em->flush();
+
+            return $this->redirectToRoute('detail_session',['id'=>$program->getSession()->getId()]);
+
+        }
+
+        return $this->render('home/add.html.twig',array(
+            'formAddProgram' => $form->createView(),
+        ));
+    }
+
 
     #[Route('/home/{id}/delete', name: 'delete_program')]
     public function delete(ManagerRegistry $doctrine, Program $program):Response
@@ -87,6 +108,7 @@ class HomeController extends AbstractController
         return $this->redirectToRoute('detail_session',['id'=>$program->getSession()->getId()]);
 
     }
+
 
     #[Route('/home/{id}', name: 'detail_session')]
     public function detailSession(EntityManagerInterface $entityManager, Session $session):Response
