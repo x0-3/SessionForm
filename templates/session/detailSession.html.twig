@@ -14,7 +14,7 @@
 
     
     <div class="flex mb-20 ml-9" id="add_button">
-        <a class="p-2 rounded-md" href="{{path('add_program',{'id': session.id})}}">add Program</a>
+        <a class="p-2 rounded-md" href="{{path('add_program',{'idSession': session.id})}}">add Program</a>
     </div>
 
     <h2 class="text-xl font-semibold my-9 ml-9">program</h2> 
@@ -27,7 +27,7 @@
                 <a class="text-xl text-center mb-3" href="{{path('detail_module', {'id': program.module.id})}}">{{program.module.name}} <br> {{program}}h <br></a>
 
                 <div id="add_button">
-                    <a class="p-1 w-20 rounded-md text-center mb-2.5" href="{{path('edit_program', {'id':program.id})}}">edit</a>
+                    <a class="p-1 w-20 rounded-md text-center mb-2.5" href="{{path('edit_program', {'id':program.id, 'idSession':session.id})}}">edit</a>
                     <a class="p-1 w-20 rounded-md text-center mb-2.5" href="{{path('delete_program', {'id':program.id})}}">delete</a>
         
                 </div>

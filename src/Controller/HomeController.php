@@ -31,22 +31,22 @@ class HomeController extends AbstractController
 
 
 
-    #[Route('/home/{id}/add', name: 'add_program')]
-    #[Route('/home/{id}/edit', name: 'edit_program')]
-    public function addProgram(ManagerRegistry $doctrine, $id, Program $program = null, Request $request): Response
+    #[Route('/home/{idSession}/add', name: 'add_program')]
+    #[Route('/home/{id}/edit/{idSession}', name: 'edit_program')]
+    public function addProgram(ManagerRegistry $doctrine, $idSession, Program $program = null, Request $request): Response
     {
         
+
         // if the entreprise id doesn't exist then create it
         if (!$program) {
-            
-            $repo = $doctrine->getRepository(Session::class); //get the repo from session
-            $session = $repo->find($id); //find the id of the session
-
             $program = new Program();
         }
         // else edit
 
-        
+        $repo = $doctrine->getRepository(Session::class); //get the repo from session
+        $session = $repo->find($idSession); //find the id of the session
+
+
         // create a form that refers to the builder in employeType
         $form = $this->createForm(ProgramType::class);
         
@@ -65,24 +65,14 @@ class HomeController extends AbstractController
             $entityManager->flush(); // execute
 
             // redirect to list employe
-            return $this->redirectToRoute('detail_session',['id'=>$program->getSession()->getId()]);
-        }
-
-        if (!$program) {
-
-            // vue to show form
-            return $this->render('home/add.html.twig', [
-                'session'=> $session,
-                'formAddProgram'=> $form->createView(),
-                'edit'=> $program->getId(),     
-            ]);
+            return $this->redirectToRoute('detail_session',['id'=>$idSession]);
         }
 
         // vue to show form
         return $this->render('home/add.html.twig', [
-            // 'session'=> $session,
-            'formAddProgram'=> $form->createView(),
+            'session'=> $session,
             'edit'=> $program->getId(),     
+            'formAddProgram'=> $form->createView(),
         ]);
     }
 

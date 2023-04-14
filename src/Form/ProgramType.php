@@ -29,29 +29,21 @@ class ProgramType extends AbstractType
                 )
             ))
 
-            // ->add('session', EntityType::class,
-            // [
-            //     'class'=>Session::class,
-            //     'choice_label' => function (Session $session){
-            //         return $_GET['id'];;
-            //     }
-            // ])
-
             // ->add('session', EntityType::class,[
             //     'class'=>Session::class,
             //     'choice_label' => 'name'])
 
             
-            ->add('session',EntityType::class,
-            [
-                'class' => Session::class,
-                'choice_label' => function ($session) {
-                    return ($session->getId()); 
+            // ->add('session',EntityType::class,
+            // [
+            //     'class' => Session::class,
+            //     'choice_label' => function ($session) {
+            //         return ($session->getId()); 
                     
-                }
+            //     }
                  
-            ]
-            )
+            // ]
+            // )
 
             ->add('module', EntityType::class,[
                 'class'=>Module::class,
