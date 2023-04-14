@@ -25,9 +25,7 @@ class ModuleType extends AbstractType
                 )
             ))
 
-            // ->add('category', EntityType::class,[
-            //     'class'=>Category::class,
-            //     'choice_label' => 'name'])
+            // ->add('category')
 
             ->add('submit',SubmitType::class, array(
                 'attr' => array(
