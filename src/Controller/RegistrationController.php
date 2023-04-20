@@ -17,6 +17,14 @@ class RegistrationController extends AbstractController
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
+
+        // if we have a user already registered in database then the regired form is blocked
+        if ($user = $entityManager->getRepository(User::class)->findAll()) {
+            return $this->redirectToRoute('app_login');
+        }
+        
+        // else we create a new user
+        
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -40,5 +48,7 @@ class RegistrationController extends AbstractController
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
+        
+
     }
 }
