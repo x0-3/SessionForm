@@ -4,13 +4,21 @@
 
 {% block body %}
 
-<section class="flex justify-center h-screen items-center">
+{% if app.user %}
+    
+    <section class="flex justify-center h-screen items-center">
+        
+        {{form_start(formAddCategory, { 'attr': { 'class': 'flex flex-col items-center'}} )}}
+        
+        {{form_row(formAddCategory.name)}}
+        
+        {{form_end(formAddCategory)}}
+        
+    </section>
 
-    {{form_start(formAddCategory, { 'attr': { 'class': 'flex flex-col items-center'}} )}}
-    
-    {{form_row(formAddCategory.name)}}
-    
-    {{form_end(formAddCategory)}}
-    
-</section>
+    {% else %}
+        <h2>You do not have access to this page !</h2>
+
+{% endif %}
+
 {% endblock %}

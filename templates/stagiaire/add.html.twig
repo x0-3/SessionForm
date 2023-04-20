@@ -4,23 +4,30 @@
 
 {% block body %}
 
-<section class="flex justify-center min-h-screen items-center">
+{% if app.user %}
 
-    {{form_start(formAddStagiaire, { 'attr': { 'class': 'flex flex-col items-center'}})}}
+    <section class="flex justify-center min-h-screen items-center">
+
+        {{form_start(formAddStagiaire, { 'attr': { 'class': 'flex flex-col items-center'}})}}
+        
+            {{form_row(formAddStagiaire.name)}}
+            {{form_row(formAddStagiaire.lastName)}}
+            {{form_row(formAddStagiaire.gender)}}
+            {{form_row(formAddStagiaire.birthday)}}
+            {{form_row(formAddStagiaire.adresse)}}
+            {{form_row(formAddStagiaire.city)}}
+            {{form_row(formAddStagiaire.zipCode)}}
+            {{form_row(formAddStagiaire.email)}}
+            {{form_row(formAddStagiaire.tel)}}
+            {{form_row(formAddStagiaire.stagiaire_session)}}
+            {{form_row(formAddStagiaire.submit)}}
+        
+        {{form_end(formAddStagiaire)}}
+        
+    </section>
+
+    {% else %}
+        <h2>You do not have access to this page !</h2>
     
-        {{form_row(formAddStagiaire.name)}}
-        {{form_row(formAddStagiaire.lastName)}}
-        {{form_row(formAddStagiaire.gender)}}
-        {{form_row(formAddStagiaire.birthday)}}
-        {{form_row(formAddStagiaire.adresse)}}
-        {{form_row(formAddStagiaire.city)}}
-        {{form_row(formAddStagiaire.zipCode)}}
-        {{form_row(formAddStagiaire.email)}}
-        {{form_row(formAddStagiaire.tel)}}
-        {{form_row(formAddStagiaire.stagiaire_session)}}
-        {{form_row(formAddStagiaire.submit)}}
-    
-    {{form_end(formAddStagiaire)}}
-    
-</section>
+{% endif %}
 {% endblock %}

@@ -4,13 +4,20 @@
 
 {% block body %}
 
-<section class="flex justify-center h-screen items-center">
+{% if app.user %}
+    <section class="flex justify-center h-screen items-center">
 
-    {{form_start(formAddModule, { 'attr': { 'class': 'flex flex-col items-center'}})}}
-    
-        {{form_row(formAddModule.name)}}
-    
-    {{form_end(formAddModule)}}
-    
-</section>
+        {{form_start(formAddModule, { 'attr': { 'class': 'flex flex-col items-center'}})}}
+        
+            {{form_row(formAddModule.name)}}
+        
+        {{form_end(formAddModule)}}
+        
+    </section>
+
+    {% else %}
+        <h2>You do not have access to this page !</h2>
+
+{% endif %}
+
 {% endblock %}

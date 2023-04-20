@@ -23,9 +23,10 @@
             <ul class="flex justify-center items-center h-14">
                 <li class="mx-8"><a href="{{ path('app_home')}}">Home</a></li>
                 <li class="mx-8"><a href="{{ path('app_module')}}">Program</a></li>
-                <li class="mx-8"><a href="{{ path('app_stagiaire')}}">Intern</a></li>
-            
+                
                 {% if app.user %}
+                    <li class="mx-8"><a href="{{ path('app_stagiaire')}}">Intern</a></li>
+            
                     <a href="{{ path('app_logout')}}">logOut</a>
                     
                     {% else %}

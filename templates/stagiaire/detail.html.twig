@@ -4,36 +4,43 @@
 
 {% block body %}
 
-<section>
-
+{% if app.user %}
     
-    <h1 class="text-center text-2xl font-semibold my-9">{{stagiaire.fullName}}</h1>
+    <section>
 
-    <div class="flex my-9 ml-9" id="add_button">
-
-        <a class="p-2 rounded-md" href="{{path('edit_stagiaire', {'id': stagiaire.id})}}">edit</a>
         
-        <a class="p-2 rounded-md ml-6" href="{{path('delete_stagiaire', {'id': stagiaire.id})}}">delete</a>
-    </div>
-    
-    <div class="ml-9">
+        <h1 class="text-center text-2xl font-semibold my-9">{{stagiaire.fullName}}</h1>
 
-        <p>{{stagiaire}}</p></br>
-        
-        <div class="flex flex-wrap justify-evenly">
+        <div class="flex my-9 ml-9" id="add_button">
 
-            {% for session in stagiaire.stagiaireSession %}
-            <div id="session" class="flex justify-center items-center flex-col rounded-md h-36 w-72  mr-14 mb-14">
-
-                
-                <a href="{{path('detail_session', {'id': session.id})}}"> {{session.name}} </a>
-                
-            </div>
-            {% endfor %}
+            <a class="p-2 rounded-md" href="{{path('edit_stagiaire', {'id': stagiaire.id})}}">edit</a>
+            
+            <a class="p-2 rounded-md ml-6" href="{{path('delete_stagiaire', {'id': stagiaire.id})}}">delete</a>
         </div>
         
-    </div>
-</section>
+        <div class="ml-9">
+
+            <p>{{stagiaire}}</p></br>
+            
+            <div class="flex flex-wrap justify-evenly">
+
+                {% for session in stagiaire.stagiaireSession %}
+                <div id="session" class="flex justify-center items-center flex-col rounded-md h-36 w-72  mr-14 mb-14">
+
+                    
+                    <a href="{{path('detail_session', {'id': session.id})}}"> {{session.name}} </a>
+                    
+                </div>
+                {% endfor %}
+            </div>
+            
+        </div>
+    </section>
+
+    {% else %}
+        <h2>You do not have access to this page !</h2>
+        
+{% endif %}
 
 
 {% endblock %}

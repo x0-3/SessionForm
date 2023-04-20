@@ -8,10 +8,12 @@
         
         <h1 class="text-center text-2xl font-semibold my-9">Home</h1>
     
-        <div class="flex mb-20 ml-9" id="add_button">
-            
-            <a class="p-2 rounded-md" href="{{path('add_session')}}">add Session</a>
-        </div>
+        {% if app.user %}
+            <div class="flex mb-20 ml-9" id="add_button">
+                
+                <a class="p-2 rounded-md" href="{{path('add_session')}}">add Session</a>
+            </div>
+        {% endif %}
 
         <div class="flex flex-wrap justify-evenly ml-9 ">
             {% for session in sessions %}
@@ -28,11 +30,13 @@
                         </div>
                     </a>
 
-                    <div class="flex flex-col items-center justify-end" id="add_button">
-                        
-                        <a class="p-1 w-20 rounded-md text-center mb-2.5" href="{{path('edit_session', {'id': session.id})}}">edit</a>
-                        <a class="p-1 w-20 rounded-md text-center mb-2.5" href="{{path('delete_session', {'id': session.id})}}">delete</a>
-                    </div>
+                    {% if app.user %}
+                        <div class="flex flex-col items-center justify-end" id="add_button">
+                            
+                            <a class="p-1 w-20 rounded-md text-center mb-2.5" href="{{path('edit_session', {'id': session.id})}}">edit</a>
+                            <a class="p-1 w-20 rounded-md text-center mb-2.5" href="{{path('delete_session', {'id': session.id})}}">delete</a>
+                        </div>
+                    {% endif %}
                     
                 </div>
         
