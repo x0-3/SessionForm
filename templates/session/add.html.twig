@@ -40,11 +40,9 @@
                     data-list-selector="#programs-fields-list">Ajouter un nouveau module</button>
             </div>
         
-         
-        
-            {# empêche l'apparition d'une légende "programmes", si la collection est vide (en cas de création d'une nouvelle session) #}
+            
+            {# avoids a legend "programs" to be shown, if the collection is empty (in a session creation case) #}
             {% do form.programs.setRendered %}
-
             
             {{form_row(form.submit)}}
         

@@ -36,6 +36,12 @@ class ProgramType extends AbstractType
                 'choice_label' => 'name'
             ])
 
+            ->add('submit', SubmitType::class, array(
+                'attr' => array(
+                    'class' => 'justify-center w-28 mb-5 p-1.5 rounded-lg bg-gray-500',
+                )
+            ))
+
         ;
 
 
