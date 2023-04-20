@@ -8,9 +8,11 @@ use App\Form\CategoryType;
 use App\Form\ModuleType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class ProgramController extends AbstractController
 {
@@ -31,7 +33,7 @@ class ProgramController extends AbstractController
     // ********************************************* add edit and delete a category *********************** //
     #[Route('/program/add', name: 'add_category')]
     #[Route('/program/{id}/edit', name: 'edit_category')]
-    public function addCategory(ManagerRegistry $docrine, Category $category = null, Request $request)
+    public function addCategory(ManagerRegistry $docrine, Category $category = null, Request $request, SluggerInterface $slugger)
     {
 
         // if the entreprise id doesn't exist then create it
@@ -48,6 +50,32 @@ class ProgramController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $category = $form->getData(); // get the data submitted in form and hydrate the object 
+
+
+            $image = $form->get('image')->getData();
+
+            // this condition is needed because the 'brochure' field is not required
+            // so the PDF file must be processed only when a file is uploaded
+            if ($image) {
+                $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$image->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $image->move(
+                        $this->getParameter('category_directory'),  
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $category->setImage($newFilename);
+            }
 
             // need the doctrine manager to get persist and flush
             $entityManager = $docrine->getManager(); 
@@ -110,9 +138,7 @@ class ProgramController extends AbstractController
 
         // vue to show form
         return $this->render('program/addModule.html.twig', [
-            'category'=> $category,
             'formAddModule'=> $form->createView(),   
-            'edit'=> $module->getId(),   
         ]);
     }
 
