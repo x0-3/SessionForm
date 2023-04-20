@@ -44,6 +44,7 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+                'attr' => ['class' => 'flex flex-col w-80 mb-5 p-1.5 rounded-lg'],
             ])
         ;
     }

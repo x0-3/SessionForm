@@ -3,7 +3,11 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <form method="post">
+
+<section class="flex justify-center h-screen items-center flex-col">
+
+    <form method="post" class="flex flex-col items-center">
+
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
@@ -14,11 +18,11 @@
             </div>
         {% endif %}
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <h1 class="text-xl mb-3 font-weight-normal">Please sign in</h1>
         <label for="inputEmail">Email</label>
-        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control w-80 mb-5 p-1.5 rounded-lg" autocomplete="email" required autofocus>
         <label for="inputPassword">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+        <input type="password" name="password" id="inputPassword" class="form-control w-80 mb-5 p-1.5 rounded-lg" autocomplete="current-password" required>
 
         <input type="hidden" name="_csrf_token"
             value="{{ csrf_token('authenticate') }}"
@@ -35,12 +39,13 @@
             </div>
         #}
 
-        <button class="btn btn-lg btn-primary" type="submit">
+        <button class="justify-center w-28 mb-5 p-1.5 rounded-lg bg-gray-500" type="submit">
             Sign in
         </button>
+        
     </form>
 
-    
-    <a href="{{ path('app_register')}}">Create an account</a>
+    <a class="text-s" href="{{ path('app_register')}}">Create an account</a>
+</section>
 
 {% endblock %}
