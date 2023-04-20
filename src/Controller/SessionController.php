@@ -55,8 +55,9 @@ class SessionController extends AbstractController
         // vue to show form
         return $this->render('session/add.html.twig', [
 
-            'formAddSession'=> $form->createView(),   
-            'edit'=> $session->getId(),   
+            'form'=> $form->createView(),   
+            'edit'=> $session->getId(),
+            'sessionId'=>$session->getId(),   
         ]);
     }
 

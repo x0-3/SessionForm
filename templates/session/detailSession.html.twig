@@ -12,12 +12,6 @@
         <p>space left : {{ session.currentNbPlace}}</p>
     </div>
 
-    {% if app.user %}
-        <div class="flex mb-20 ml-9" id="add_button">
-            <a class="p-2 rounded-md" href="{{path('add_program',{'idSession': session.id})}}">add Program</a>
-        </div>
-    {% endif %}
-
     <h2 class="text-xl font-semibold my-9 ml-9">program</h2> 
 
     <div class="flex flex-wrap justify-start ml-9">
