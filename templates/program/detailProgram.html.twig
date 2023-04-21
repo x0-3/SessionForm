@@ -7,8 +7,6 @@
 <section>
 
     <h1 class="text-center text-2xl font-semibold my-9">{{category.name}}</h1>
-    
-    <img src="/uploads/{{category.image}}" alt="category img">
 
     {% if app.user %}
         
@@ -19,6 +17,11 @@
         </div>
         
     {% endif %}
+
+    <figure class="w-3/12 mx-auto mb-10">
+        <img src="/uploads/{{category.image}}" alt="category img" class="w-full rounded-2xl drop-shadow-md">
+
+    </figure>
     
     <div class="flex flex-wrap justify-evenly">
 
