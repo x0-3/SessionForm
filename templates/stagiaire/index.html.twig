@@ -4,10 +4,10 @@
 
 {% block body %}
 
-{% if app.user %}
-    <section>
+<section>
+    {% if is_granted('ROLE_ADMIN') %}
 
-    <h1 class="text-center text-2xl font-semibold my-9">List of interns</h1>
+        <h1 class="text-center text-2xl font-semibold my-9">List of interns</h1>
 
         <div class="flex my-9 ml-9" id="add_button">
             <a class="p-2 w-20 rounded-md text-center mb-2.5" href="{{path('add_stagiaire')}}">add</a>
@@ -17,14 +17,14 @@
 
         {% for stagiaire in stagiaires %}
         
-        <a class="ml-9" href="{{path('detail_stagiaire', {'id': stagiaire.id})}}">{{ stagiaire.fullName }} </a> <br>
+            <a class="ml-9" href="{{path('detail_stagiaire', {'id': stagiaire.id})}}">{{ stagiaire.fullName }} </a> <br>
         
         {% endfor %}
-        
-        {% else %}
+                
+    {% else %}
         <h2>You do not have access to this page !</h2>
-        
-    </section>
-{% endif %}
+            
+    {% endif %}
+</section>
 
 {% endblock %}

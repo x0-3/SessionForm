@@ -47,7 +47,7 @@ class CategoryType extends AbstractType
                             'image/jpeg',
                             'image/gif',
                         ],
-                        'mimeTypesMessage' => 'Please upload a image image',
+                        'mimeTypesMessage' => 'Please upload an image',
                     ])
                 ],
             ])

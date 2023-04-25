@@ -69,7 +69,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_ADMIN';
+        $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
@@ -80,6 +80,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    // public function isAdmin(): array
+    // {
+    //     $admin = $this->roles;
+    //     // guarantee every user at least has ROLE_USER
+    //     $admin[] = 'ROLE_ADMIN';
+
+    //     return array_unique($admin);
+    // }
 
     /**
      * @see PasswordAuthenticatedUserInterface

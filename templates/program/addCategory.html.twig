@@ -4,7 +4,7 @@
 
 {% block body %}
 
-{% if app.user %}
+{% if is_granted('ROLE_ADMIN') %}
     
     <section class="flex justify-center h-screen items-center">
         

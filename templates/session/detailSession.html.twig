@@ -34,7 +34,7 @@
         {% endfor %}
     </div>
 
-    {% if app.user %}
+    {% if is_granted('ROLE_ADMIN') %}
 
         <div class="flex justify-around mb-9">
 
